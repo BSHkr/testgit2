@@ -1,6 +1,6 @@
-#include"bsh.h"
+#include "bsh.h"
 
-void world()
+void world(void)
 {
 	printf("World!\n");
 }

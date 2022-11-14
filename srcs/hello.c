@@ -1,6 +1,6 @@
-#include"bsh.h"
+#include "bsh.h"
 
-void hello()
+void hello(void)
 {
 	printf("Hello ");
 }

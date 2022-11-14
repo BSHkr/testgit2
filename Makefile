@@ -1,11 +1,25 @@
-bsh: main.o hello.o world.o
-	gcc -o bsh main.o hello.o world.o
+NAME = bsh
 
-main.o: includes/bsh.h srcs/main.c
-	gcc -c -o main.o main.c
+SRCS = srcs/main.c srcs/hello.c srcs/world.c
+OBJS = $(SRCS:.c=.o)
+INCLUDES = includes
+CC = gcc -Wall -Wextra -Werror
+RM = rm -rf
 
-hello.o: includes/bsh.h srcs/hello.c
-	gcc -c -o hello.o hello.c
+all : $(NAME)
 
-world.o: includes/bsh.h srcs/world.c
-	gcc -c -o world.o world.c
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) -o $(NAME)
+
+.c.o:
+	$(CC) -c $< -o $@ -I ${INCLUDES}
+
+clean:
+	$(RM) $(OBJS)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY : all clean fclean re
